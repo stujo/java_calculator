@@ -1,24 +1,14 @@
 package com.skillbox.demo.calc;
 
-import junit.framework.TestCase;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class CalculatorTest extends TestCase {
+public class CalculatorTest {
 
     static final double sEPSILON = 0.00001;
 
-    Calculator mCalculator = null;
-
-    protected void setUp() throws Exception {
-        super.setUp();
-        mCalculator = new Calculator();
-    }
-
-    protected void tearDown() throws Exception {
-        super.tearDown();
-        mCalculator = null;
-    }
+    Calculator mCalculator = new Calculator();
 
     @Before
     public void clearCalculatorMemory() {
@@ -27,16 +17,22 @@ public class CalculatorTest extends TestCase {
 
     @Test
     public void testInitialValue() {
-        assertEquals(0, mCalculator.getCurrentValue(), sEPSILON);
+        Assert.assertEquals(0, mCalculator.getCurrentValue(), sEPSILON);
     }
 
     @Test
     public void testAdd5() {
-        assertEquals(5, mCalculator.add(5), sEPSILON);
+        Assert.assertEquals(5, mCalculator.add(5), sEPSILON);
     }
 
     @Test
     public void testAdd55() {
-        assertEquals(55, mCalculator.add(55), sEPSILON);
+        Assert.assertEquals(55, mCalculator.add(55), sEPSILON);
+    }
+
+    @Test
+    public void testAddMinus32() {
+        mCalculator.add(17);
+        Assert.assertEquals(-15, mCalculator.add(-32), sEPSILON);
     }
 }
