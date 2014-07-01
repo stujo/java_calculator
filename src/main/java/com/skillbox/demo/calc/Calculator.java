@@ -1,23 +1,30 @@
 package com.skillbox.demo.calc;
 
+import java.math.BigDecimal;
+
 public class Calculator {
 
-    private double mCurrentValue = 0.0;
+    private BigDecimal mCurrentValue = null;
+
+    public Calculator() {
+        clear();
+    }
 
     public double add(double value) {
-        setCurrentValue(getCurrentValue() + value);
+        mCurrentValue = mCurrentValue.add(new BigDecimal(value));
+        return getCurrentValue();
+    }
+
+    public double add(BigDecimal value) {
+        mCurrentValue = mCurrentValue.add(value);
         return getCurrentValue();
     }
 
     public double getCurrentValue() {
-        return mCurrentValue;
+        return mCurrentValue.doubleValue();
     }
 
     public void clear() {
-        mCurrentValue = 0.0;
-    }
-
-    private void setCurrentValue(double value) {
-        mCurrentValue = value;
+        mCurrentValue = new BigDecimal("0.0");
     }
 }
